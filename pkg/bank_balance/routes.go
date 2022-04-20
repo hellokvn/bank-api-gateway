@@ -13,6 +13,7 @@ func RegisterRoutes(app *fiber.App, c config.Config) {
 	r.Put("/deposit-funds/:id", svc.DepositFunds)
 	r.Put("/withdraw-funds/:id", svc.WithdrawFunds)
 	r.Put("/transfer/:id", svc.TransferFunds)
+	r.Get("/find-one/:id", svc.GetBalance)
 }
 
 func (svc *ServiceClient) DepositFunds(ctx *fiber.Ctx) error {
@@ -25,4 +26,8 @@ func (svc *ServiceClient) WithdrawFunds(ctx *fiber.Ctx) error {
 
 func (svc *ServiceClient) TransferFunds(ctx *fiber.Ctx) error {
 	return routes.TransferFunds(ctx, svc.CommandClient)
+}
+
+func (svc *ServiceClient) GetBalance(ctx *fiber.Ctx) error {
+	return routes.GetBalance(ctx, svc.QueryClient)
 }
