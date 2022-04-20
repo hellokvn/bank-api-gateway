@@ -14,7 +14,7 @@ service BankBalanceCommandService {
 
 message DepositFundsRequest {
   string id = 1;
-  string amount = 2;
+  int32 amount = 2;
 }
 
 message DepositFundsResponse {
@@ -26,7 +26,7 @@ message DepositFundsResponse {
 
 message WithdrawFundsRequest {
   string id = 1;
-  string amount = 2;
+  int32 amount = 2;
 }
 
 message WithdrawFundsResponse {
