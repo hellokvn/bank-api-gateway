@@ -39,7 +39,7 @@ message WithdrawFundsResponse {
 message TransferFundsRequest {
   string fromId = 1;
   string toId = 2;
-  string amount = 3;
+  int32 amount = 3;
 }
 
 message TransferFundsResponse {
