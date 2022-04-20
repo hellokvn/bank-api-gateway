@@ -7,18 +7,18 @@ import (
 	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_account/pb"
 )
 
-type AccountType string
+// type AccountType string
 
-const (
-	Savings AccountType = "SAVINGS"
-	Current             = "CURRENT"
-)
+// const (
+// 	Savings AccountType = "SAVINGS"
+// 	Current             = "CURRENT"
+// )
 
 type OpenAccountRequestBody struct {
-	FirstName      string      `json:"firstName"`
-	LastName       string      `json:"lastName"`
-	OpeningBalance int32       `json:"openingBalance"`
-	Type           AccountType `json:"type"`
+	FirstName      string `json:"firstName"`
+	LastName       string `json:"lastName"`
+	OpeningBalance int32  `json:"openingBalance"`
+	Type           string `json:"type"`
 }
 
 func OpenAccount(ctx *fiber.Ctx, c pb.BankAccountCommandServiceClient) error {
