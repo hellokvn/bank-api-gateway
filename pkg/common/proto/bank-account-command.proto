@@ -9,17 +9,12 @@ service BankAccountCommandService {
   rpc CloseAccount(CloseAccountRequest) returns (CloseAccountResponse) {}
 }
 
-enum AccountType {
-  ACCOUNT_TYPE_SAVINGS = 0;
-  ACCOUNT_TYPE_CURRENT = 1;
-}
-
 // OpenAccount
 
 message OpenAccountRequest {
   string firstName = 1;
   string lastName = 2;
-  AccountType type = 3;
+  string type = 3;
   int32 openingBalance = 4;
 }
 
