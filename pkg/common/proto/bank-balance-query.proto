@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package bank_balance_query;
+
+option go_package = "./";
+
+service BankBalanceQueryService {
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse) {}
+}
+
+// GetBalance
+
+message GetBalanceRequest { string id = 1; }
+
+message GetBalanceResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 data = 3;
+}

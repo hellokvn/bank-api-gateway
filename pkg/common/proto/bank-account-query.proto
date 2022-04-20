@@ -6,6 +6,29 @@ option go_package = "./";
 
 service BankAccountQueryService {
   rpc FindAccount(FindAccountRequest) returns (FindAccountResponse) {}
+  rpc FindAllAccounts(FindAllAccountsRequest)
+      returns (FindAllAccountsResponse) {}
+}
+
+message Account {
+  string id = 1;
+  string firstName = 2;
+  string latName = 3;
+  bool isActive = 4;
+  int32 balance = 5;
+}
+
+// FindAllAccounts
+
+message FindAllAccountsRequest { int32 page = 1; }
+
+message FindAllAccountsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated Account data = 3;
+  int32 total = 4;
+  int32 count = 5;
+  int32 page = 6;
 }
 
 // FindAccount
@@ -15,5 +38,5 @@ message FindAccountRequest { string id = 1; }
 message FindAccountResponse {
   int32 status = 1;
   repeated string error = 2;
-  string id = 3;
+  Account data = 3;
 }

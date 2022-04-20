@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package bank_account_command;
+
+option go_package = "./";
+
+service BankAccountCommandService {
+  rpc OpenAccount(OpenAccountRequest) returns (OpenAccountResponse) {}
+  rpc CloseAccount(CloseAccountRequest) returns (CloseAccountResponse) {}
+}
+
+enum AccountType {
+  ACCOUNT_TYPE_SAVINGS = 0;
+  ACCOUNT_TYPE_CURRENT = 1;
+}
+
+// OpenAccount
+
+message OpenAccountRequest {
+  string firstName = 1;
+  string lastName = 2;
+  AccountType type = 3;
+  int32 openingBalance = 4;
+}
+
+message OpenAccountResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string data = 3;
+}
+
+// CloseAccount
+
+message CloseAccountRequest { string id = 1; }
+
+message CloseAccountResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}

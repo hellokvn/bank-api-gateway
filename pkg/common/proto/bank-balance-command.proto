@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package bank_balance_command;
+
+option go_package = "./";
+
+service BankBalanceCommandService {
+  rpc DepositFunds(DepositFundsRequest) returns (DepositFundsResponse) {}
+  rpc WithdrawFunds(WithdrawFundsRequest) returns (WithdrawFundsResponse) {}
+  rpc TransferFunds(TransferFundsRequest) returns (TransferFundsResponse) {}
+}
+
+// DepositFunds
+
+message DepositFundsRequest {
+  string id = 1;
+  string amount = 2;
+}
+
+message DepositFundsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
+
+// WithdrawFunds
+
+message WithdrawFundsRequest {
+  string id = 1;
+  string amount = 2;
+}
+
+message WithdrawFundsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
+
+// TransferFunds
+
+message TransferFundsRequest {
+  string fromId = 1;
+  string toId = 2;
+  string amount = 3;
+}
+
+message TransferFundsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
