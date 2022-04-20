@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package bank_account_query;
+
+service BankAccountQueryService {
+  rpc FindAccount(FindAccountRequest) returns (FindAccountResponse) {}
+}
+
+// FindAccount
+
+message FindAccountRequest { string id = 1; }
+
+message FindAccountResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string id = 3;
+}
