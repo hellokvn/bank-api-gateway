@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package bank_account_query;
 
+option go_package = "./";
+
 service BankAccountQueryService {
   rpc FindAccount(FindAccountRequest) returns (FindAccountResponse) {}
 }
