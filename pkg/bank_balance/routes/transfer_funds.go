@@ -7,19 +7,21 @@ import (
 	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_balance/pb"
 )
 
-type WithdrawFundsRequestBody struct {
-	Amount int32 `json:"amount"`
+type TransferFundsRequestBody struct {
+	Amount int32  `json:"amount"`
+	ToId   string `json:"toId"`
 }
 
-func WithdrawFunds(ctx *fiber.Ctx, c pb.BankBalanceCommandServiceClient) error {
-	body := WithdrawFundsRequestBody{}
+func TransferFunds(ctx *fiber.Ctx, c pb.BankBalanceCommandServiceClient) error {
+	body := TransferFundsRequestBody{}
 
 	if err := ctx.BodyParser(&body); err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
 
-	res, err := c.WithdrawFunds(context.Background(), &pb.WithdrawFundsRequest{
-		Id:     ctx.Params("id"),
+	res, err := c.TransferFunds(context.Background(), &pb.TransferFundsRequest{
+		FromId: ctx.Params("id"),
+		ToId:   body.ToId,
 		Amount: body.Amount,
 	})
 

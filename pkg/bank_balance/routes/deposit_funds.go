@@ -17,6 +17,7 @@ func DepositFunds(ctx *fiber.Ctx, c pb.BankBalanceCommandServiceClient) error {
 	if err := ctx.BodyParser(&body); err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
+
 	res, err := c.DepositFunds(context.Background(), &pb.DepositFundsRequest{
 		Id:     ctx.Params("id"),
 		Amount: body.Amount,
