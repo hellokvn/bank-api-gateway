@@ -12,7 +12,8 @@ func RegisterRoutes(app *fiber.App, c config.Config) {
 	}
 
 	r := app.Group("/bank-account")
-	r.Get("/id/:id", svc.FindAccount)
+	r.Get("/find-one/:id", svc.FindAccount)
+	r.Get("/find/:page", svc.FindAccount)
 }
 
 func (svc *ServiceClient) FindAccount(ctx *fiber.Ctx) error {
