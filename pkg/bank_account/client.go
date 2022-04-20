@@ -9,15 +9,19 @@ import (
 )
 
 type ServiceClient struct {
-	Client pb.BankAccountQueryServiceClient
+	CommandClient pb.BankAccountCommandServiceClient
+	QueryClient   pb.BankAccountQueryServiceClient
 }
 
-func InitServiceClient(c *config.Config) pb.BankAccountQueryServiceClient {
+func InitServiceClient(c *config.Config) *ServiceClient {
 	cc, err := grpc.Dial(c.BankAccountQSvcUrl, grpc.WithInsecure())
 
 	if err != nil {
 		fmt.Println("Could not connect:", err)
 	}
 
-	return pb.NewBankAccountQueryServiceClient(cc)
+	return &ServiceClient{
+		QueryClient:   pb.NewBankAccountQueryServiceClient(cc),
+		CommandClient: pb.NewBankAccountCommandServiceClient(cc),
+	}
 }
