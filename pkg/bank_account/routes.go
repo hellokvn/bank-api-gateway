@@ -9,7 +9,7 @@ import (
 func RegisterRoutes(app *fiber.App, c config.Config) {
 	svc := InitServiceClient(&c)
 
-	r := app.Group("/bank-account")
+	r := app.Group("/api/v1/bank-account")
 	r.Get("/find-one/:id", svc.FindAccount)
 	r.Get("/find/:page", svc.FindAllAccounts)
 	r.Post("/", svc.OpenAccount)

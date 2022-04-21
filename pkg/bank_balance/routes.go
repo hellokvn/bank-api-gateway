@@ -9,7 +9,7 @@ import (
 func RegisterRoutes(app *fiber.App, c config.Config) {
 	svc := InitServiceClient(&c)
 
-	r := app.Group("/bank-balance")
+	r := app.Group("/api/v1/bank-balance")
 	r.Put("/deposit-funds/:id", svc.DepositFunds)
 	r.Put("/withdraw-funds/:id", svc.WithdrawFunds)
 	r.Put("/transfer-funds/:id", svc.TransferFunds)
