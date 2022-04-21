@@ -22,5 +22,9 @@ func main() {
 
 	bank_account.RegisterRoutes(app, c)
 
-	app.Listen(c.Port)
+	err = app.Listen(c.Port)
+
+	if err != nil {
+		log.Fatalln("Failed to listen", err)
+	}
 }
