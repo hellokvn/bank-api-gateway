@@ -13,7 +13,7 @@ func RegisterRoutes(app *fiber.App, c config.Config) {
 	r.Get("/find-one/:id", svc.FindAccount)
 	r.Get("/find/:page", svc.FindAllAccounts)
 	r.Post("/", svc.OpenAccount)
-	r.Delete("/", svc.CloseAccount)
+	r.Delete("/:id", svc.CloseAccount)
 }
 
 func (svc *ServiceClient) FindAccount(ctx *fiber.Ctx) error {

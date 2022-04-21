@@ -14,14 +14,20 @@ type ServiceClient struct {
 }
 
 func InitServiceClient(c *config.Config) *ServiceClient {
-	cc, err := grpc.Dial(c.BankAccountQSvcUrl, grpc.WithInsecure())
+	queryConnection, err := grpc.Dial(c.BankAccountQSvcUrl, grpc.WithInsecure())
+
+	if err != nil {
+		fmt.Println("Could not connect:", err)
+	}
+
+	cmdConnection, err := grpc.Dial(c.BankAccountCSvcUrl, grpc.WithInsecure())
 
 	if err != nil {
 		fmt.Println("Could not connect:", err)
 	}
 
 	return &ServiceClient{
-		QueryClient:   pb.NewBankAccountQueryServiceClient(cc),
-		CommandClient: pb.NewBankAccountCommandServiceClient(cc),
+		QueryClient:   pb.NewBankAccountQueryServiceClient(queryConnection),
+		CommandClient: pb.NewBankAccountCommandServiceClient(cmdConnection),
 	}
 }
