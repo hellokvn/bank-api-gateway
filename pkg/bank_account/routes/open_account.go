@@ -15,10 +15,10 @@ import (
 // )
 
 type OpenAccountRequestBody struct {
-	FirstName      string `json:"firstName"`
-	LastName       string `json:"lastName"`
-	OpeningBalance int32  `json:"openingBalance"`
+	Holder         string `json:"holder"`
 	Type           string `json:"type"`
+	Email          string `json:"email"`
+	OpeningBalance int32  `json:"openingBalance"`
 }
 
 func OpenAccount(ctx *fiber.Ctx, c pb.BankAccountCommandServiceClient) error {
@@ -29,9 +29,9 @@ func OpenAccount(ctx *fiber.Ctx, c pb.BankAccountCommandServiceClient) error {
 	}
 
 	res, err := c.OpenAccount(context.Background(), &pb.OpenAccountRequest{
-		FirstName:      body.FirstName,
-		LastName:       body.LastName,
+		Holder:         body.Holder,
 		Type:           body.Type,
+		Email:          body.Email,
 		OpeningBalance: body.OpeningBalance,
 	})
 
