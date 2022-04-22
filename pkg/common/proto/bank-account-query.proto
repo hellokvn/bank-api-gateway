@@ -12,10 +12,9 @@ service BankAccountQueryService {
 
 message Account {
   string id = 1;
-  string firstName = 2;
-  string latName = 3;
-  bool isActive = 4;
-  int32 balance = 5;
+  string holder = 2;
+  bool isActive = 3;
+  int32 balance = 4;
 }
 
 // FindAllAccounts
