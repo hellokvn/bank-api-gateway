@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package bank_balance_query;
+package bank_funds_query;
 
 option go_package = "./";
 
-service BankBalanceQueryService {
+service BankFundsQueryService {
   rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse) {}
 }
 

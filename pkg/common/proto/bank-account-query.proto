@@ -17,6 +17,13 @@ message Account {
   int32 balance = 4;
 }
 
+message FindAllAccountsResponseData {
+  repeated Account accounts = 3;
+  int32 total = 4;
+  int32 count = 5;
+  int32 page = 6;
+}
+
 // FindAllAccounts
 
 message FindAllAccountsRequest { int32 page = 1; }
@@ -24,10 +31,7 @@ message FindAllAccountsRequest { int32 page = 1; }
 message FindAllAccountsResponse {
   int32 status = 1;
   repeated string error = 2;
-  repeated Account data = 3;
-  int32 total = 4;
-  int32 count = 5;
-  int32 page = 6;
+  FindAllAccountsResponseData data = 3;
 }
 
 // FindAccount
