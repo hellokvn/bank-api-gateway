@@ -4,10 +4,10 @@ import (
 	"context"
 
 	"github.com/gofiber/fiber/v2"
-	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_balance/pb"
+	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_funds/pb"
 )
 
-func GetBalance(ctx *fiber.Ctx, c pb.BankBalanceQueryServiceClient) error {
+func GetBalance(ctx *fiber.Ctx, c pb.BankFundsQueryServiceClient) error {
 	res, err := c.GetBalance(context.Background(), &pb.GetBalanceRequest{
 		Id: ctx.Params("id"),
 	})

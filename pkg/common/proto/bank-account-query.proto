@@ -14,7 +14,6 @@ message Account {
   string id = 1;
   string holder = 2;
   bool isActive = 3;
-  int32 balance = 4;
 }
 
 message FindAllAccountsResponseData {

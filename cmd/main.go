@@ -5,7 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/hellokvn/bank-api-gateway/pkg/bank_account"
+	bankAccount "github.com/hellokvn/bank-api-gateway/pkg/bank_account"
+	bankFunds "github.com/hellokvn/bank-api-gateway/pkg/bank_funds"
 	"github.com/hellokvn/bank-api-gateway/pkg/common/config"
 )
 
@@ -20,7 +21,8 @@ func main() {
 
 	app.Use(cors.New())
 
-	bank_account.RegisterRoutes(app, c)
+	bankAccount.RegisterRoutes(app, c)
+	bankFunds.RegisterRoutes(app, c)
 
 	err = app.Listen(c.Port)
 

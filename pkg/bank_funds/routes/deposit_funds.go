@@ -4,21 +4,21 @@ import (
 	"context"
 
 	"github.com/gofiber/fiber/v2"
-	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_balance/pb"
+	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_funds/pb"
 )
 
-type WithdrawFundsRequestBody struct {
+type DepositFundsRequestBody struct {
 	Amount int32 `json:"amount"`
 }
 
-func WithdrawFunds(ctx *fiber.Ctx, c pb.BankBalanceCommandServiceClient) error {
-	body := WithdrawFundsRequestBody{}
+func DepositFunds(ctx *fiber.Ctx, c pb.BankFundsCommandServiceClient) error {
+	body := DepositFundsRequestBody{}
 
 	if err := ctx.BodyParser(&body); err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
 
-	res, err := c.WithdrawFunds(context.Background(), &pb.WithdrawFundsRequest{
+	res, err := c.DepositFunds(context.Background(), &pb.DepositFundsRequest{
 		Id:     ctx.Params("id"),
 		Amount: body.Amount,
 	})

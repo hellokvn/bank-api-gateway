@@ -1,16 +1,16 @@
-package bank_balance
+package bankFunds
 
 import (
 	"fmt"
 
-	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_balance/pb"
+	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_funds/pb"
 	"github.com/hellokvn/bank-api-gateway/pkg/common/config"
 	"google.golang.org/grpc"
 )
 
 type ServiceClient struct {
-	CommandClient pb.BankBalanceCommandServiceClient
-	QueryClient   pb.BankBalanceQueryServiceClient
+	CommandClient pb.BankFundsCommandServiceClient
+	QueryClient   pb.BankFundsQueryServiceClient
 }
 
 func InitServiceClient(c *config.Config) *ServiceClient {
@@ -31,7 +31,7 @@ func InitServiceClient(c *config.Config) *ServiceClient {
 	}
 
 	return &ServiceClient{
-		QueryClient:   pb.NewBankBalanceQueryServiceClient(queryConnection),
-		CommandClient: pb.NewBankBalanceCommandServiceClient(cmdConnection),
+		QueryClient:   pb.NewBankFundsQueryServiceClient(queryConnection),
+		CommandClient: pb.NewBankFundsCommandServiceClient(cmdConnection),
 	}
 }

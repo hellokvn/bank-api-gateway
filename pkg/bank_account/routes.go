@@ -1,4 +1,4 @@
-package bank_account
+package bankAccount
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -12,8 +12,8 @@ func RegisterRoutes(app *fiber.App, c config.Config) {
 	r := app.Group("/api/v1/bank-account")
 	r.Get("/find-one/:id", svc.FindAccount)
 	r.Get("/find/:page", svc.FindAllAccounts)
-	r.Post("/", svc.OpenAccount)
-	r.Delete("/:id", svc.CloseAccount)
+	r.Post("/open", svc.OpenAccount)
+	r.Delete("/close/:id", svc.CloseAccount)
 }
 
 func (svc *ServiceClient) FindAccount(ctx *fiber.Ctx) error {

@@ -1,4 +1,4 @@
-package bank_account
+package bankAccount
 
 import (
 	"fmt"

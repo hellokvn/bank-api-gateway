@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/gofiber/fiber/v2"
-	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_balance/pb"
+	pb "github.com/hellokvn/bank-api-gateway/pkg/bank_funds/pb"
 )
 
 type TransferFundsRequestBody struct {
@@ -12,7 +12,7 @@ type TransferFundsRequestBody struct {
 	ToId   string `json:"toId"`
 }
 
-func TransferFunds(ctx *fiber.Ctx, c pb.BankBalanceCommandServiceClient) error {
+func TransferFunds(ctx *fiber.Ctx, c pb.BankFundsCommandServiceClient) error {
 	body := TransferFundsRequestBody{}
 
 	if err := ctx.BodyParser(&body); err != nil {
