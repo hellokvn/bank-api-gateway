@@ -1,0 +1,15 @@
+
+version: "3.8"
+
+services:
+  bank_api_gatway:
+    container_name: bank_api_gatway
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    networks:
+      - nesjs-network
+            
+networks:
+  bank-account-network:
