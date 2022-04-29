@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - nesjs-network
+      - bank-account-network
             
 networks:
   bank-account-network:
