@@ -1,5 +1,4 @@
-
-version: "3.8"
+version: "3.9"
 
 services:
   bank_api_gatway:
@@ -7,9 +6,11 @@ services:
     build:
       context: .
     ports:
-      - "3000:3000"
-    networks:
-      - bank-account-network
-            
+      - ${PORT}:${PORT}
+    environment:
+      - IS_DOCKER=true
+
 networks:
-  bank-account-network:
+  default:
+    external:
+      name: bank_api_network
