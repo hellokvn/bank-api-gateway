@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -24,7 +25,7 @@ func main() {
 	bankAccount.RegisterRoutes(app, c)
 	bankFunds.RegisterRoutes(app, c)
 
-	err = app.Listen(c.Port)
+	err = app.Listen(fmt.Sprintf(":%s", c.Port))
 
 	if err != nil {
 		log.Fatalln("Failed to listen", err)

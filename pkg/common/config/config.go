@@ -1,6 +1,10 @@
 package config
 
-import "github.com/spf13/viper"
+import (
+	"os"
+
+	"github.com/spf13/viper"
+)
 
 type Config struct {
 	Port               string `mapstructure:"PORT"`
@@ -8,11 +12,19 @@ type Config struct {
 	BankAccountCSvcUrl string `mapstructure:"BANK_ACCOUNT_COMMAND_SVC_URL"`
 	BankFundsQSvcUrl   string `mapstructure:"BANK_FUNDS_QUERY_SVC_URL"`
 	BankFundsCSvcUrl   string `mapstructure:"BANK_FUNDS_COMMAND_SVC_URL"`
+	IsDOcker           string `mapstructure:"IS_DOCKER"`
 }
 
 func LoadConfig() (config Config, err error) {
 	viper.AddConfigPath("./")
-	viper.SetConfigName(".env")
+
+	path := ".env"
+
+	if os.Getenv("IS_DOCKER") == "true" || os.Getenv("IS_DOCKER") == "1" {
+		path = ".docker.env"
+	}
+
+	viper.SetConfigName(path)
 	viper.SetConfigType("env")
 	viper.AutomaticEnv()
 
